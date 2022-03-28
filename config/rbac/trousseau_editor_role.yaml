@@ -1,0 +1,24 @@
+# permissions for end users to edit trousseaus.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: trousseau-editor-role
+rules:
+- apiGroups:
+  - kms.trousseau.io
+  resources:
+  - trousseaus
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - kms.trousseau.io
+  resources:
+  - trousseaus/status
+  verbs:
+  - get

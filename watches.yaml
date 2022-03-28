@@ -1,0 +1,6 @@
+# Use the 'create api' subcommand to add watches to this file.
+- group: kms.trousseau.io
+  version: v1alpha1
+  kind: Trousseau
+  chart: helm-charts/trousseau
+#+kubebuilder:scaffold:watch

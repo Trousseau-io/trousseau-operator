@@ -1,0 +1,20 @@
+# permissions for end users to view trousseaus.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: trousseau-viewer-role
+rules:
+- apiGroups:
+  - kms.trousseau.io
+  resources:
+  - trousseaus
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - kms.trousseau.io
+  resources:
+  - trousseaus/status
+  verbs:
+  - get
