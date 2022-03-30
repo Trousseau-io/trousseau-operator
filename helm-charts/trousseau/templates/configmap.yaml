@@ -25,7 +25,7 @@ data:
     template {
     destination = "/etc/secrets/config.yaml"
     contents = <<EOT
-    {{- with secret "secret/data/trousseau/config" }}
+    {{`{{- with secret "secret/data/trousseau/config" }}
     --- 
     provider: vault
     vault:
@@ -33,6 +33,6 @@ data:
       - {{ .Data.data.transitkeyname }} 
       address: {{ .Data.data.vaultaddress }} 
       token: {{ .Data.data.vaulttoken }} 
-    {{ end }} 
+    {{ end }}`}} 
     EOT
     }

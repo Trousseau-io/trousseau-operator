@@ -12,3 +12,4 @@ subjects:
 - kind: ServiceAccount
   name: {{ include "trousseau.serviceAccountName" . }}
   namespace: {{ .Values.kmsplugin.namespace }}
+{{- end }}
