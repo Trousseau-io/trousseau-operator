@@ -11,5 +11,5 @@ roleRef:
 subjects:
 - kind: ServiceAccount
   name: {{ include "trousseau.serviceAccountName" . }}
-  namespace: {{ .Values.kmsplugin.namespace }}
+  namespace: {{ .Values.namespace }}
 {{- end }}

@@ -1,10 +1,11 @@
-name: trousseau-operator
+name: vault-kms-provider
 
 k8sDistro: default
+namespace: kube-system 
 
 serviceAccount:
   create: true
-  name: "vault-auth"
+  name: vault-auth
 
 podSecurityPolicy:
   enabled: false
@@ -13,7 +14,6 @@ podSecurityPolicy:
 kmsplugin:
   create: true
   name: vault-kms-provider 
-  namespace: kube-system 
 
 trousseau:
   image: 
