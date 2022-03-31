@@ -1,7 +1,4 @@
 apiVersion: kms.trousseau.io/v1alpha1
 kind: Trousseau
-metadata:
-  name: {{ .Values.kmsplugin.vault.name }}
-  namespace: {{ .Values.namespace }}
-spec:
+
   
