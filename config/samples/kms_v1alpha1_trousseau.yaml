@@ -1,4 +1,6 @@
 apiVersion: kms.trousseau.io/v1alpha1
 kind: Trousseau
-
+metadata:
+  name: trousseau-kms-plugin
+spec:
   
