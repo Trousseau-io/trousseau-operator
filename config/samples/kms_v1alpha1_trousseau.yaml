@@ -3,4 +3,7 @@ kind: Trousseau
 metadata:
   name: trousseau-kms-plugin
 spec:
-  
+  affinity: {}
+  resource: {}
+  securityContext: {}
+  tolerations: {}

@@ -3,10 +3,6 @@ name: trousseau
 k8sDistro: default
 namespace: kube-system 
 
-podSecurityPolicy:
-  enabled: false
-  annotations: {}
-
 kmsplugin:
   vault: 
     name: vault-kms-provider 
