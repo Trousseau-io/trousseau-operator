@@ -1,31 +1,28 @@
-name: vault-kms-provider
+name: trousseau
 
 k8sDistro: default
 namespace: kube-system 
-
-serviceAccount:
-  create: true
-  name: vault-auth
 
 podSecurityPolicy:
   enabled: false
   annotations: {}
 
 kmsplugin:
-  create: true
-  name: vault-kms-provider 
-
-trousseau:
-  image: 
-    registry: ghcr.io
-    repository: ondat/trousseau
-    tag: v1.1.0
-    pullPolicy: IfNotPresent
-vaultagent:
-  image: 
-    repository: vault
-    tag: 1.8.6
-    pullPolicy: IfNotPresent
+  vault: 
+    name: vault-kms-provider 
+    serviceaccount:
+      name: vault-auth 
+    trousseau:
+      image: 
+        registry: ghcr.io
+        repository: ondat/trousseau
+        tag: v1.1.0
+        pullPolicy: IfNotPresent
+    vaultagent:
+      image: 
+        repository: vault
+        tag: 1.8.6
+        pullPolicy: IfNotPresent
 
 securityContext: 
   allowPrivilegeEscalation: false 

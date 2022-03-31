@@ -2,33 +2,34 @@ apiVersion: apps/v1
 kind: DaemonSet
 metadata:
   name: {{ .Values.kmsplugin.name }}
-  namespace: {{ .Values.kmsplugin.namespace }}
+  namespace: {{ .Values.namespace }}
   labels:
     tier: control-plane 
-    app: {{ .Values.kmsplugin.name }}
+    app: {{ .Values.kmsplugin.vault.name }}
 spec:
   selector:
     matchLabels:
-      name: {{ .Values.kmsplugin.name }}
+      name: {{ .Values.kmsplugin.vault.name }}
   template:
     metadata:
       labels:
-        name: {{ .Values.kmsplugin.name }}
+        name: {{ .Values.kmsplugin.vault.name }}
     spec:
-      serviceAccountName: {{ include "trousseau.serviceAccountName" . }}
+      serviceAccountName: {{ .Values.kmsplugin.vault.serviceaccount.name }}
       priorityClassName: system-cluster-critical 
       hostNetwork: true 
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       initContainers:
         - name: vault-agent
-          image: "{{ .Values.vaultagent.image.repository }}:{{ .Values.vaultagent.image.tag }}"
+          image: "{{ .Values.kmsplugin.vault.vaultagent.image.repository }}:{{ .Values.kmsplugin.vault.vaultagent.image.tag }}"
+          imagePullPolicy: {{ .Values.kmsplugin.vault.vaultagent.image.pullPolicy }}
       containers:
         - name: {{ .Chart.Name }}
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
-          image: "{{ .Values.trousseau.image.repository }}:{{ .Values.trousseau.image.tag | default .Chart.AppVersion }}"
-          imagePullPolicy: {{ .Values.trousseau.image.pullPolicy }}
+          image: "{{ .Values.kmsplugin.vault.trousseau.image.repository }}:{{ .Values.kmsplugin.vault.trousseau.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.kmsplugin.vault.trousseau.image.pullPolicy }}
           ports:
             - name: http
               containerPort: 80
