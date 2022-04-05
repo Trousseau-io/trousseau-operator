@@ -1,5 +1,7 @@
 name: trousseau
 
+appVersion: v1.1.0
+
 k8sDistro: default
 namespace: kube-system 
 
